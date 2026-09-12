@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="NutriRank: compare whey, albumina e caseína pelo custo real por grama de proteína." />
+  <meta name="theme-color" content="#0b4f41" />
+  <title>NutriRank — Saúde, proteína e melhor custo-benefício</title>
+  
+  
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="NutriRank - início">
+        <span class="brand-symbol" aria-hidden="true">
+          <svg viewBox="0 0 44 44">
+            <path d="M9 31.5V12.8c0-2 2.25-3.2 3.9-2.08l20.1 13.6c1.86 1.26.97 4.18-1.28 4.18H17v3a4 4 0 0 1-8 0Z"/>
+            <path class="accent" d="M18 9h17v7H18z"/>
+          </svg>
+        </span>
+        <span class="brand-copy"><strong>NutriRank</strong><small>Nutrição, saúde e economia</small></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="#ofertas">Destaques</a>
+        <a href="#cadastro">Cadastrar oferta</a>
+        <a href="#ranking">Comparar</a>
+        <a href="#metodologia">Metodologia</a>
+        <a href="#conteudos">Guias</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+          <span class="sun">☀</span><span class="moon">☾</span>
+        </button>
+        <a class="header-cta" href="#cadastro">Adicionar produto</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Navegação móvel">
+      <a href="#ofertas">Destaques</a>
+      <a href="#cadastro">Cadastrar oferta</a>
+      <a href="#ranking">Comparar</a>
+      <a href="#metodologia">Metodologia</a>
+      <a href="#conteudos">Guias</a>
+    </nav>
+  </header>
+
+  <main id="conteudo"><section class="mobile-intro"><span>NutriRank • no seu celular</span><h1>Compare suas proteínas</h1><p>Cadastre uma oferta, confira o rótulo e compare o custo por grama. Os produtos ficam neste aparelho.</p><a class="primary-button" href="#cadastro">Cadastrar produto</a><p class="mobile-note">Importação online pendente. O cadastro manual funciona sem internet.</p></section>
+    <section class="hero" id="inicio">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="hero-glow glow-a" aria-hidden="true"></div>
+      <div class="hero-glow glow-b" aria-hidden="true"></div>
+
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="hero-badge"><span></span> Nutrição esportiva com comparação transparente</div>
+          <h1>Proteína de qualidade.<br /><em>Escolhas mais saudáveis.</em></h1>
+          <p>
+            Compare whey, albumina e caseína usando preço, concentração e rendimento real. Uma forma mais saudável e consciente de escolher seu suplemento.
+          </p>
+
+          <form class="hero-search" id="heroSearchForm">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <label class="sr-only" for="heroSearchInput">Buscar suplemento ou marca</label>
+            <input id="heroSearchInput" type="search" placeholder="Busque por whey, albumina, marca..." />
+            <button type="submit">Comparar agora <span aria-hidden="true">→</span></button>
+          </form>
+
+          <div class="hero-proof">
+            <div><strong id="heroProductCount">0</strong><span>produtos analisados</span></div>
+            <div><strong id="heroBrandCount">0</strong><span>marcas comparadas</span></div>
+            <div><strong>100%</strong><span>cálculo transparente</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Prévia do comparador NutriRank">
+          <div class="visual-orbit orbit-one"></div>
+          <div class="visual-orbit orbit-two"></div>
+
+          <div class="app-window">
+            <div class="app-window-top">
+              <div class="app-dots"><span></span><span></span><span></span></div>
+              <span class="app-title">NutriRank / melhor custo</span>
+              <span class="online-pill"><i></i> base local</span>
+            </div>
+
+            <div class="app-search"><span>⌕</span><span>Whey protein</span><kbd>⌘ K</kbd></div>
+
+            <div class="app-tabs">
+              <button class="active">Melhor custo</button><button>Maior concentração</button><button>Menor preço</button>
+            </div>
+
+            <div class="mock-products" id="heroMockProducts"></div>
+          </div>
+
+          <div class="float-card float-card-price">
+            <span class="float-icon">↘</span>
+            <div><small>compare o custo</small><strong>por grama</strong></div>
+          </div>
+
+          <div class="float-card float-card-score">
+            <div class="score-ring"><span>g</span></div>
+            <div><small>rótulo conferido</small><strong>Comparação clara</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container trust-row">
+        <span>Compare por dados reais</span>
+        <div><i>✓</i> preço por grama</div>
+        <div><i>✓</i> concentração proteica</div>
+        <div><i>✓</i> rendimento do pote</div>
+        <div><i>✓</i> filtros por objetivo</div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="container">
+        <div class="section-intro centered">
+          <span class="kicker">Categorias</span>
+          <h2>Escolha o tipo de proteína</h2>
+          <p>Compare produtos equivalentes para obter um resultado mais justo.</p>
+        </div>
+        <div class="category-grid" id="categoryGrid"></div>
+      </div>
+    </section>
+
+    <section class="deals-section" id="ofertas">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="kicker">Oportunidades do momento</span>
+            <h2>Melhores custos encontrados</h2>
+            <p>Produtos demonstrativos ordenados pelo menor custo por grama de proteína.</p>
+          </div>
+          <a class="ghost-link" href="#ranking">Ver ranking completo <span>→</span></a>
+        </div>
+        <div class="deal-grid" id="dealGrid"></div>
+      </div>
+    </section>
+
+    <section class="manual-entry-section" id="cadastro">
+      <div class="container">
+        <div class="manual-entry-shell">
+          <div class="manual-entry-heading">
+            <div>
+              <span class="kicker">Importação automática do Mercado Livre</span>
+              <h2>Cole o link e deixe o NutriRank preencher o produto.</h2>
+              <p>
+                O sistema identifica o anúncio, consulta os dados disponíveis e preenche título, marca,
+                preço, imagem, peso, sabor e atributos. Informações nutricionais recebem um indicador de
+                confiança para você conferir antes de incluir no ranking.
+              </p>
+            </div>
+            <div class="storage-note"><span>●</span><div><strong>Aplicação local com servidor</strong><small>Abra pelo arquivo iniciar_nutrirank.bat. Os produtos continuam salvos no Chrome.</small></div></div>
+          </div>
+
+          <form class="manual-product-form" id="manualProductForm">
+            <div class="import-link-row">
+              <label class="manual-field">
+                <span>Link do produto no Mercado Livre *</span>
+                <input id="manualProductLink" type="url" placeholder="https://www.mercadolivre.com.br/... ou https://meli.la/..." required />
+              </label>
+              <button class="import-button" id="importProductButton" type="button">
+                <span class="import-button-icon">↧</span>
+                <span><strong>Importar produto</strong><small>Preencher campos automaticamente</small></span>
+              </button>
+            </div>
+
+            <div class="import-status" id="importStatus" data-state="idle" role="status" aria-live="polite">
+              <span class="import-status-icon">◎</span>
+              <div>
+                <strong>Pronto para importar</strong>
+                <p>Cole um link do Mercado Livre e clique em “Importar produto”.</p>
+              </div>
+            </div>
+
+            <div class="import-preview" id="importPreview" hidden>
+              <div class="import-product-image">
+                <img id="importProductImage" alt="" />
+              </div>
+              <div class="import-product-summary">
+                <span class="imported-label">Produto localizado</span>
+                <strong id="importProductTitle">—</strong>
+                <p id="importProductMeta">—</p>
+                <div class="import-identifiers">
+                  <span id="importItemId">Anúncio: —</span>
+                  <span id="importProductId">Catálogo: —</span>
+                </div>
+              </div>
+              <div class="import-price-summary">
+                <span>Preço encontrado</span>
+                <strong id="importFoundPrice">—</strong>
+                <small id="importAvailability">—</small>
+              </div>
+            </div>
+
+            <div class="import-warnings" id="importWarnings" hidden></div>
+
+            <input id="manualImageUrl" type="hidden" />
+            <input id="manualItemId" type="hidden" />
+            <input id="manualCatalogProductId" type="hidden" />
+            <input id="manualImportConfidence" type="hidden" />
+
+            <div class="manual-form-grid">
+              <label class="manual-field">
+                <span>Marca * <small class="field-source" id="manualBrandSource"></small></span>
+                <input id="manualBrand" type="text" placeholder="Ex.: Growth Supplements" required />
+              </label>
+
+              <label class="manual-field manual-field-wide">
+                <span>Nome do produto * <small class="field-source" id="manualNameSource"></small></span>
+                <input id="manualName" type="text" placeholder="Ex.: Whey Protein Concentrado 1 kg" required />
+              </label>
+
+              <label class="manual-field">
+                <span>Categoria * <small class="field-source" id="manualCategorySource"></small></span>
+                <select id="manualCategory" required>
+                  <option value="Whey Concentrado">Whey Concentrado</option>
+                  <option value="Whey Isolado">Whey Isolado</option>
+                  <option value="Whey Hidrolisado">Whey Hidrolisado</option>
+                  <option value="Blend 3W">Blend 3W</option>
+                  <option value="Albumina">Albumina</option>
+                  <option value="Caseína">Caseína</option>
+                </select>
+              </label>
+
+              <label class="manual-field">
+                <span>Preço anunciado (R$) * <small class="field-source" id="manualPriceSource"></small></span>
+                <input id="manualPrice" type="number" min="0.01" step="0.01" placeholder="139,90" required />
+              </label>
+
+              <label class="manual-field">
+                <span>Preço final com cupom (R$)</span>
+                <input id="manualCouponPrice" type="number" min="0" step="0.01" placeholder="Opcional" />
+              </label>
+
+              <label class="manual-field">
+                <span>Código do cupom</span>
+                <input id="manualCouponCode" type="text" placeholder="Ex.: MELI20" />
+              </label>
+
+              <label class="manual-field">
+                <span>Peso da embalagem (g) * <small class="field-source" id="manualWeightSource"></small></span>
+                <input id="manualWeight" type="number" min="1" step="1" placeholder="1000" required />
+              </label>
+
+              <label class="manual-field">
+                <span>Tamanho da porção (g) * <small class="field-source" id="manualServingSource"></small></span>
+                <input id="manualServing" type="number" min="0.1" step="0.1" placeholder="30" required />
+              </label>
+
+              <label class="manual-field">
+                <span>Proteína por porção (g) * <small class="field-source" id="manualProteinSource"></small></span>
+                <input id="manualProtein" type="number" min="0.1" step="0.1" placeholder="Confirme no rótulo" required />
+              </label>
+
+              <label class="manual-field">
+                <span>Sabor <small class="field-source" id="manualFlavorSource"></small></span>
+                <input id="manualFlavor" type="text" placeholder="Ex.: Doce de leite" />
+              </label>
+
+              <label class="manual-check">
+                <input id="manualLactoseFree" type="checkbox" />
+                <span class="toggle-switch"></span>
+                <span>Produto sem lactose</span>
+              </label>
+
+              <label class="manual-field manual-field-wide">
+                <span>Link de afiliado para o botão “Comprar”</span>
+                <input id="manualAffiliateLink" type="url" placeholder="Opcional por enquanto. Sem ele, será usado o link original." />
+              </label>
+            </div>
+
+            <div class="manual-form-grid"><label class="manual-field"><span>Calcular cupom: desconto (%)</span><input id="couponDiscount" type="number" min="0" max="100" step="0.1"></label><label class="manual-field"><span>Compra mínima (R$)</span><input id="couponMinimum" type="number" min="0" step="0.01"></label><label class="manual-field"><span>Desconto máximo (R$, opcional)</span><input id="couponCap" type="number" min="0" step="0.01"></label><label class="manual-field"><span>Alerta local: preço-alvo (R$)</span><input id="alertTarget" type="number" min="0.01" step="0.01"></label><label class="manual-field"><span>Validade do cupom</span><input id="couponExpires" type="date"></label><label class="manual-field"><span>Condições do cupom</span><input id="couponTerms" placeholder="Compra mínima, teto, usuários elegíveis, pagamento"></label></div><label class="nutrition-confirmation">
+              <input id="manualNutritionConfirmed" type="checkbox" required />
+              <span>
+                <strong>Conferi peso, porção e proteína por porção.</strong>
+                <small>Esses três dados determinam o custo por grama e a posição no ranking.</small>
+              </span>
+            </label>
+
+            <div class="manual-form-footer">
+              <p><strong>Preço usado no ranking:</strong> preço anunciado. Ative o ranking potencial para comparar cupons dentro da validade.</p>
+              <button class="primary-button" type="submit">Adicionar ao ranking <span>→</span></button>
+            </div>
+          </form>
+
+          <div class="user-products-panel">
+            <div class="user-products-header">
+              <div><span class="kicker">Meus produtos</span><h3>Produtos importados e confirmados</h3><p><strong id="userProductCount">0</strong> produtos salvos.</p></div>
+              <div class="user-products-actions"><button id="refreshOffers" type="button">Atualizar ofertas</button><button id="backupProducts" type="button">Backup JSON</button><label>Restaurar backup<input id="restoreBackup" type="file" accept=".json,application/json"></label>
+                <button id="exportProductsButton" type="button">Exportar CSV</button>
+                <button id="clearUserProductsButton" class="danger-action" type="button">Excluir todos</button>
+              </div>
+            </div>
+
+            <p id="localAlerts" role="status"></p><p id="dbStatus" role="status">Abrindo meus produtos…</p><div class="user-products-table-shell">
+              <table class="user-products-table">
+                <thead><tr><th>Posição</th><th>Produto</th><th>Preço usado</th><th>Concentração</th><th>Proteína total</th><th>Custo/g</th><th>Oferta</th><th></th></tr></thead>
+                <tbody id="userProductsTableBody"></tbody>
+              </table>
+            </div>
+            <div class="user-products-mobile" id="userProductsMobile"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="features-section">
+      <div class="container features-layout">
+        <div class="features-copy">
+          <span class="kicker">Por que usar o NutriRank?</span>
+          <h2>O preço do pote conta só uma parte da história.</h2>
+          <p>
+            Embalagens, porções e concentrações diferentes tornam a comparação confusa.
+            O NutriRank transforma o rótulo em indicadores simples para você decidir melhor.
+          </p>
+          <a class="primary-button" href="#metodologia">Conhecer a metodologia <span>→</span></a>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-featured">
+            <div class="feature-icon">R$</div>
+            <span class="feature-number">01</span>
+            <h3>Comparação precisa</h3>
+            <p>Veja o custo efetivo de cada grama de proteína declarada no rótulo.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">↗</div>
+            <span class="feature-number">02</span>
+            <h3>Histórico preparado</h3>
+            <p>Consulte os preços gravados de cada produto na sua planilha local.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+            <span class="feature-number">03</span>
+            <h3>Filtros inteligentes</h3>
+            <p>Separe por categoria, concentração, lactose, preço e finalidade.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⚖</div>
+            <span class="feature-number">04</span>
+            <h3>Escolha equilibrada</h3>
+            <p>Combine economia, composição e rendimento em vez de olhar uma única métrica.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ranking-section" id="ranking">
+      <div class="container">
+        <div class="ranking-shell">
+          <div class="ranking-header">
+            <div>
+              <span class="kicker">Comparador avançado</span>
+              <h2>Encontre a melhor opção para você</h2>
+              <p>Refine os resultados e selecione até três produtos para comparar lado a lado.</p>
+            </div>
+            <div class="update-box"><span>Base local</span><strong id="lastUpdate">—</strong></div>
+          </div>
+
+          <div class="advanced-filters open"><label><input id="demoMode" type="checkbox"> Ver somente demonstração fictícia</label><label><input id="couponRanking" type="checkbox"> Ranking potencial com cupons válidos</label></div><p>O ranking padrão usa preço anunciado, sem frete. Cupons dependem das condições e da conta do comprador.</p><div class="category-tabs" id="categoryTabs"></div>
+
+          <div class="filter-bar">
+            <label class="filter-search">
+              <span>⌕</span>
+              <input id="searchInput" type="search" placeholder="Produto, marca ou sabor" />
+            </label>
+            <label>
+              <span class="filter-label">Marca</span>
+              <select id="brandFilter"><option value="">Todas as marcas</option></select>
+            </label>
+            <label>
+              <span class="filter-label">Preço</span>
+              <select id="priceFilter">
+                <option value="">Qualquer preço</option>
+                <option value="100">Até R$ 100</option>
+                <option value="150">Até R$ 150</option>
+                <option value="200">Até R$ 200</option>
+                <option value="250">Até R$ 250</option>
+              </select>
+            </label>
+            <label>
+              <span class="filter-label">Ordenar</span>
+              <select id="sortFilter">
+                <option value="costAsc">Melhor custo por grama</option>
+                
+                <option value="concentrationDesc">Maior concentração</option>
+                <option value="priceAsc">Menor preço</option>
+              </select>
+            </label>
+            <button class="filter-more" id="advancedToggle" type="button">Mais filtros <span>＋</span></button>
+          </div>
+
+          <div class="advanced-filters" id="advancedFilters">
+            <label>
+              <span>Concentração mínima</span>
+              <select id="concentrationFilter">
+                <option value="">Qualquer</option>
+                <option value="70">70% ou mais</option>
+                <option value="75">75% ou mais</option>
+                <option value="80">80% ou mais</option>
+                <option value="85">85% ou mais</option>
+              </select>
+            </label>
+            <label class="toggle-label">
+              <input id="lactoseFreeFilter" type="checkbox" /><span class="toggle-switch"></span><span>Somente sem lactose</span>
+            </label>
+            <label class="toggle-label">
+              <input id="userOnlyFilter" type="checkbox" /><span class="toggle-switch"></span><span>Somente produtos cadastrados por mim</span>
+            </label>
+            <button id="clearFilters" type="button">Limpar filtros</button>
+          </div>
+
+          <div class="results-meta"><span><strong id="resultCount">0</strong> produtos encontrados</span><span>Preço sem frete · produtos importados dependem da conferência do rótulo</span></div>
+          <div class="product-grid" id="productGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="compare-section" id="comparador">
+      <div class="container">
+        <div class="section-intro centered">
+          <span class="kicker">Comparação lado a lado</span>
+          <h2>Decida com clareza</h2>
+          <p>Selecione produtos no ranking e veja as diferenças principais.</p>
+        </div>
+        <div class="compare-empty" id="compareEmpty">
+          <div class="compare-empty-visual"><span>＋</span><span>↔</span><span>＋</span></div>
+          <h3>Nenhum produto selecionado</h3>
+          <p>Use o botão “Comparar” nos cards. Você pode selecionar até três produtos.</p>
+          <a class="secondary-button" href="#ranking">Escolher produtos</a>
+        </div>
+        <div class="compare-grid" id="compareGrid"></div>
+      </div>
+    </section>
+
+    <section class="method-section" id="metodologia">
+      <div class="container method-layout">
+        <div class="method-copy">
+          <span class="kicker">Metodologia transparente</span>
+          <h2>Uma conta simples que muda a comparação.</h2>
+          <p>
+            O produto mais barato nem sempre é o mais econômico. Calculamos a proteína total estimada
+            e dividimos o preço por essa quantidade.
+          </p>
+
+          <div class="formula-panel">
+            <span>Custo por grama de proteína</span>
+            <strong>Preço do produto <i>÷</i> proteína total estimada</strong>
+          </div>
+
+          <div class="method-list">
+            <article><span>01</span><div><h3>Concentração</h3><p>Proteína da porção ÷ tamanho da porção.</p></div></article>
+            <article><span>02</span><div><h3>Proteína total</h3><p>Peso líquido × concentração do produto.</p></div></article>
+            <article><span>03</span><div><h3>Custo real</h3><p>Preço ÷ proteína total disponível no pote.</p></div></article>
+          </div>
+        </div>
+
+        <div class="calculator-card">
+          <div class="calculator-header"><span>Simulação rápida</span><strong>Whey 900 g</strong></div>
+          <label><span>Preço do produto</span><div class="input-prefix"><b>R$</b><input id="calcPrice" type="number" min="0" step="0.01" value="139.90" /></div></label>
+          <div class="calc-row">
+            <label><span>Porção (g)</span><input id="calcServing" type="number" min="1" value="30" /></label>
+            <label><span>Proteína (g)</span><input id="calcProtein" type="number" min="1" value="24" /></label>
+          </div>
+          <label><span>Peso do pote (g)</span><input id="calcWeight" type="number" min="1" value="900" /></label>
+          <div class="calc-result">
+            <div><span>Concentração</span><strong id="calcConcentration">80,0%</strong></div>
+            <div><span>Proteína total</span><strong id="calcTotalProtein">720 g</strong></div>
+            <div class="result-primary"><span>Custo por grama</span><strong id="calcCost">R$ 0,194</strong></div>
+          </div>
+          <small>Estimativa baseada nos dados declarados no rótulo.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="conteudos">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="kicker">Aprenda antes de comprar</span><h2>Guias e análises</h2><p>Conteúdo para interpretar rótulos e comparar categorias.</p></div>
+          <div class="carousel-controls"><button id="articlesPrev" type="button" aria-label="Anterior">←</button><button id="articlesNext" type="button" aria-label="Próximo">→</button></div>
+        </div>
+        <div class="article-track" id="articlesTrack">
+          <article class="article-card article-main"><span>Guia completo</span><h3>Whey concentrado, isolado ou hidrolisado?</h3><p>Entenda o que realmente muda na composição, preço e indicação.</p><a href="#metodologia">Ver metodologia <b>→</b></a></article>
+          <article class="article-card"><span>Economia</span><h3>Albumina é sempre a proteína mais barata?</h3><p>Compare custo por grama, digestibilidade e praticidade.</p><a href="#metodologia">Ver metodologia <b>→</b></a></article>
+          <article class="article-card"><span>Rótulos</span><h3>Como reconhecer um produto pouco concentrado</h3><p>Porção, proteína, carboidratos e ingredientes em linguagem simples.</p><a href="#metodologia">Ver metodologia <b>→</b></a></article>
+          <article class="article-card"><span>Compra inteligente</span><h3>Promoção real ou embalagem chamativa?</h3><p>O tamanho do pote pode esconder um rendimento menor.</p><a href="#metodologia">Ver metodologia <b>→</b></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" hidden>
+      <div class="container cta-card">
+        <div class="cta-glow"></div>
+        <div><span class="kicker">Alertas de oportunidade</span><h2>Saiba quando o custo por grama cair.</h2><p>Cadastre-se para acompanhar a evolução do projeto e futuras comparações de preços reais.</p></div>
+        <form id="newsletterForm"><label class="sr-only" for="newsletterEmail">Seu e-mail</label><input id="newsletterEmail" type="email" placeholder="Digite seu melhor e-mail" required /><button type="submit">Quero acompanhar <span>→</span></button></form>
+        <p class="form-message" id="newsletterMessage" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-about">
+        <a class="brand" href="#topo"><span class="brand-symbol"><svg viewBox="0 0 44 44"><path d="M9 31.5V12.8c0-2 2.25-3.2 3.9-2.08l20.1 13.6c1.86 1.26.97 4.18-1.28 4.18H17v3a4 4 0 0 1-8 0Z"/><path class="accent" d="M18 9h17v7H18z"/></svg></span><span class="brand-copy"><strong>NutriRank</strong><small>Nutrição, saúde e economia</small></span></a>
+        <p>Comparador independente de suplementos proteicos, desenvolvido para tornar o custo-benefício mais transparente.</p>
+      </div>
+      <div class="footer-links"><strong>Comparar</strong><a href="#ranking">Ranking completo</a><a href="#ofertas">Destaques</a><a href="#comparador">Comparador</a></div>
+      <div class="footer-links"><strong>Aprender</strong><a href="#metodologia">Metodologia</a><a href="#conteudos">Guias</a><a href="#inicio">Como funciona</a></div>
+      <div class="footer-links"><strong>Transparência</strong><span>Demonstração separada</span><span>Preços sem frete</span><span>Podemos receber comissão por compras elegíveis pelos links de afiliado.</span></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="currentYear"></span> NutriRank</span><span>Compare melhor. Escolha com inteligência.</span></div>
+  </footer>
+
+  <div class="compare-tray" id="compareTray">
+    <div><span class="tray-count" id="trayCount">0</span><div><strong>Produtos selecionados</strong><small>Escolha até três itens</small></div></div>
+    <div class="tray-products" id="trayProducts"></div>
+    <a href="#comparador">Comparar agora <span>→</span></a>
+  </div>
+
+  <dialog id="historyDialog"><h2>Histórico de consultas</h2><div id="historyContent"></div><form method="dialog"><button>Fechar</button></form></dialog><div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="mobile.js"></script>
+<nav class="bottom-nav" aria-label="Navegação do aplicativo"><a href="#ranking">Ranking</a><a href="#cadastro">Cadastrar</a><a href="#comparador">Comparar</a><a href="#metodologia">Calcular</a></nav></body>
+</html>
