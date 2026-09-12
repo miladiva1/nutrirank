@@ -405,8 +405,6 @@ function fillImportedProduct(data) {
 
 async function importProductFromLink() {
   editingId = null;
-  showToast("Importação online ainda não ativada. Cadastre os dados manualmente.");
-  return;
   const url = refs.manualProductLink.value.trim();
   if (!isMercadoLivreUrl(url)) {
     showToast("Cole um link válido do Mercado Livre.");
