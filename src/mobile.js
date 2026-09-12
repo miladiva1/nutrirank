@@ -27,7 +27,8 @@ const API_BASE='https://api.mercadolibre.com';
 const normalizeText=value=>String(value??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 const numberValue=value=>{
   if(value==null) return null;
-  const match=String(value).replace(',','.').match(/-?\d+(?:\.\d+)?/);
+  const normalized=String(value).trim().replace(/\.(?=\d{3}(?:\D|$))/g,'').replace(',','.');
+  const match=normalized.match(/-?\d+(?:\.\d+)?/);
   return match ? Number(match[0]) : null;
 };
 const grams=value=>{
