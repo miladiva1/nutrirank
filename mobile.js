@@ -27,7 +27,8 @@ const API_BASE='https://api.mercadolibre.com';
 const normalizeText=value=>String(value??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 const numberValue=value=>{
   if(value==null) return null;
-  const match=String(value).replace(',','.').match(/-?\d+(?:\.\d+)?/);
+  const normalized=String(value).trim().replace(/\.(?=\d{3}(?:\D|$))/g,'').replace(',','.');
+  const match=normalized.match(/-?\d+(?:\.\d+)?/);
   return match ? Number(match[0]) : null;
 };
 const grams=value=>{
@@ -90,6 +91,7 @@ async function importMercadoLivre(rawUrl){
     try{
       const redirect=await fetch(rawUrl,{redirect:'follow'});
       resolved=redirect.url || rawUrl;
+      if(!validLink(resolved)) throw new Error('O link curto redirecionou para um endereço fora do Mercado Livre.');
       id=itemIdFromUrl(resolved);
     }catch(error){throw new Error('Não foi possível abrir o link curto do Mercado Livre.');}
   }
