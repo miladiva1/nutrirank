@@ -90,6 +90,7 @@ async function importMercadoLivre(rawUrl){
     try{
       const redirect=await fetch(rawUrl,{redirect:'follow'});
       resolved=redirect.url || rawUrl;
+      if(!validLink(resolved)) throw new Error('O link curto redirecionou para um endereço fora do Mercado Livre.');
       id=itemIdFromUrl(resolved);
     }catch(error){throw new Error('Não foi possível abrir o link curto do Mercado Livre.');}
   }
