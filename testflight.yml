@@ -1,0 +1,69 @@
+name: Enviar iPhone ao TestFlight
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testflight
+  cancel-in-progress: false
+
+jobs:
+  testflight:
+    runs-on: macos-26
+    timeout-minutes: 45
+    environment: apple-testflight
+    env:
+      APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+      APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+      APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+      APPLE_API_PRIVATE_KEY: ${{ secrets.APPLE_API_PRIVATE_KEY }}
+      APPLE_CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+      APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+      APPLE_PROFILE_BASE64: ${{ secrets.APPLE_PROFILE_BASE64 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.19.0'
+      - name: Conferir configuracao Apple
+        run: python3 scripts/apple-signing.py check
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+      - run: pnpm exec cap add ios
+      - run: pnpm exec cap sync ios
+      - name: Preparar assinatura temporaria
+        run: python3 scripts/apple-signing.py prepare
+      - name: Gerar arquivo assinado
+        shell: bash
+        run: |
+          set -euo pipefail
+          PROFILE_UUID=$(cat "$RUNNER_TEMP/nutrirank-signing/profile-uuid")
+          xcodebuild -project ios/App/App.xcodeproj -scheme App \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/NutriRank.xcarchive" \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY='Apple Distribution' \
+            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" archive
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/NutriRank.xcarchive" \
+            -exportOptionsPlist "$RUNNER_TEMP/nutrirank-signing/ExportOptions.plist" \
+            -exportPath "$RUNNER_TEMP/nutrirank-ipa"
+      - name: Enviar para processamento no App Store Connect
+        shell: bash
+        run: |
+          set -euo pipefail
+          export API_PRIVATE_KEYS_DIR="$RUNNER_TEMP/nutrirank-signing"
+          xcrun altool --upload-app --type ios \
+            --file "$RUNNER_TEMP/nutrirank-ipa/App.ipa" \
+            --apiKey "$APPLE_API_KEY_ID" --apiIssuer "$APPLE_API_ISSUER_ID"
+      - name: Limpar assinatura temporaria
+        if: always()
+        run: python3 scripts/apple-signing.py clean

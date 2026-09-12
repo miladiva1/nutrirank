@@ -1,0 +1,17 @@
+node_modules/
+android/.gradle/
+android/local.properties
+android/**/build/
+ios/DerivedData/
+*.keystore
+*.p12
+*.mobileprovision
+*.p8
+*.p12
+config.json
+*.sqlite3
+__pycache__/
+build/
+www/
+android/app/src/main/assets/public/
+ios/App/App/public/

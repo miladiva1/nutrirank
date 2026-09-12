@@ -1,0 +1,8 @@
+{
+  "appId": "com.nutrirank.app",
+  "appName": "NutriRank",
+  "webDir": "www",
+  "backgroundColor": "#f5faf7",
+  "android": { "allowMixedContent": false },
+  "ios": { "contentInset": "automatic" }
+}
