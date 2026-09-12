@@ -1,13 +1,13 @@
 # NutriRank para Android e iPhone
 
-Aplicativo Capacitor 8 com cadastro manual de ofertas, confirmação nutricional, ranking por custo de proteína, cupons separados, comparação, histórico local e exportação/backup. O visual e os cálculos vêm do NutriRank v5. A versão de computador original foi preservada separadamente.
+Aplicativo Capacitor 8 com importação de anúncios do Mercado Livre, confirmação nutricional, ranking por custo de proteína, cupons separados, comparação, histórico local e exportação/backup. O visual e os cálculos vêm do NutriRank v5. A versão de computador original foi preservada separadamente.
 
 ## Estado real
 
 - Projetos `android/` e `ios/` gerados e sincronizados.
 - Cinco testes de armazenamento/validação passaram localmente. A interface passou em teste no Chrome com largura de celular, cadastro offline, persistência, comparação, cupons, histórico, exportação e exclusão.
 - Compilação nativa e instalação em aparelho ainda não foram verificadas. Os workflows deste repositório farão a primeira compilação na nuvem.
-- O importador autenticado do Mercado Livre ainda não está ativo. Não há sincronização de dados entre aparelhos nem envio de alertas por push.
+- O importador consulta os endpoints públicos do Mercado Livre e sempre pede conferência do rótulo. Não há sincronização de dados entre aparelhos nem envio de alertas por push.
 - O app móvel salva os produtos em um arquivo privado no aparelho. Não inclui o servidor Python nem o banco SQLite do computador. No navegador de desenvolvimento, usa armazenamento local. Exporte o backup antes de desinstalar.
 
 ## Android: obter um APK para testar
