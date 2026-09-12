@@ -6,7 +6,7 @@ Aplicativo Capacitor 8 com importação de anúncios do Mercado Livre, confirma�
 
 - Projetos `android/` e `ios/` gerados e sincronizados.
 - Cinco testes de armazenamento/validação passaram localmente. A interface passou em teste no Chrome com largura de celular, cadastro offline, persistência, comparação, cupons, histórico, exportação e exclusão.
-- Compilação nativa e instalação em aparelho ainda não foram verificadas. Os workflows deste repositório farão a primeira compilação na nuvem.
+- A compilação nativa foi verificada no GitHub Actions (APK Android e projeto iOS para simulador); a instalação em aparelho físico ainda depende do teste no seu celular.
 - O importador tenta os endpoints públicos do Mercado Livre e sempre pede conferência do rótulo. Se um anúncio exigir credencial, o app mostra o motivo e permite completar os campos manualmente; tokens nunca ficam no aplicativo público. Não há sincronização de dados entre aparelhos nem envio de alertas por push.
 - O app móvel salva os produtos em um arquivo privado no aparelho. Não inclui o servidor Python nem o banco SQLite do computador. No navegador de desenvolvimento, usa armazenamento local. Exporte o backup antes de desinstalar.
 
